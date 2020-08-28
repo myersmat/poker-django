@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+<script src="{% static "js/.css " %}"></script>
+<div class="opponent-container">
+    {% for opponent in opponent_list %}
+    <div class="opponent-div" id="player_{{ player.id }}">
+        <!-- <div class="opponent-logo" id="player-{{ player.id }}-logo"></div> -->
+        <div class="opponent-name" id="player-{{ opponent.id }}-name">{{ opponent.name }}</div>
+        <div class="opponent-chip" id="player-{{ opponent.id }}-chip-count">{{ opponent.chip_count }}</div>
+        <div class="opponent-hand" id="player-{{ opponent.id }}-hand"></div>
+        <div class="bet-zone" id="player-{{ opponent.id }}-bet-zone"></div>
+        <div class="dealer-blind-chip-zone" id="player-{{ opponent.id }}-dealer-blind-chip-zone"></div>
+    </div>
+    {% endfor %}
+</div>
+<div class="play-area">
+    <div class="card-bay"></div>
+    <div class="pot"></div>
+</div>
+<div class="player-area"></div>
+
+<div class="invisible-resource-smuggler" id="card-resource-smuggler">
+    {% for res in resource_files %}
+    <img src={{ res }}>
+    {% endfor %}
+</div>
+
+{{ room_name|json_script:"room-name" }}
+{{ player_id|json_script:"player-id" }}
+{{ player_idx|json_script:"player-idx" }}
